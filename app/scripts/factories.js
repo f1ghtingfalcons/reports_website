@@ -94,5 +94,154 @@ reportsModule.factory('formatFactory', function(){
         return list;
     };
     
+    formatFactory.formatDatabaseReport = function(jsonObj){
+    	var list = [];
+		var dfsize;
+		var dfused;
+		var dbused;
+		var dfs;
+		var dfu;
+		var dbu;
+		var response;
+		var reorg;
+		var speed;
+
+        // Build up a table of results.
+        for(var i = 0; i<  jsonObj.results.bindings.length; i++) {
+          dfs = new Number(jsonObj.results.bindings[i].DFSizeinGB.value)/1024/1024;
+          dfu = new Number(jsonObj.results.bindings[i].DFUsedinGB.value)/1024/1024;
+          dbu = new Number(jsonObj.results.bindings[i].DBFileSizeinGB.value)/1024/1024;
+          if(typeof jsonObj.results.bindings[i].SpeedType === 'undefined')
+          	speed = " ";
+          else 
+          	speed = jsonObj.results.bindings[i].SpeedType.value;
+          if(typeof jsonObj.results.bindings[i].ResponsibleElement === 'undefined'){
+          	response = ' ';
+          	reorg = ' ';
+          }
+          else {
+          	response = jsonObj.results.bindings[i].ResponsibleElement.value;
+          	reorg = jsonObj.results.bindings[i].resporg.value;
+          }
+          dfsize = dfs.toFixed(1);
+          dfused = dfu.toFixed(1);
+          dbused = dbu.toFixed(1);
+          list.push({"c": [
+      			   {"v": jsonObj.results.bindings[i].DBType.value},
+                   {"v": jsonObj.results.bindings[i].Server.value},
+                   {"v": jsonObj.results.bindings[i].Database.value},
+                   {"v": jsonObj.results.bindings[i].Mountpoint.value},
+                   {"v": dbused},
+                   {"v": dfsize},
+                   {"v": dfused},
+                   {"v": response},
+                   {"v": speed}]
+                });
+        }
+        return list;
+    };
+    
+    formatFactory.formatDSReport = function(jsonObj){
+    	var list = [];
+		var dfsize;
+		var dfused;
+		var dfs;
+		var dfu;
+		var response;
+		var speed;
+		var reorg;
+
+        // Build up a table of results.
+        for(var i = 0; i<  jsonObj.results.bindings.length; i++) {
+          dfs = new Number(jsonObj.results.bindings[i].DFSize.value)/1024/1024;
+          dfu = new Number(jsonObj.results.bindings[i].DFUsed.value)/1024/1024;
+          if(typeof jsonObj.results.bindings[i].Speedtype === 'undefined')
+          	speed = " "
+          else 
+          	speed = jsonObj.results.bindings[i].Speedtype.value
+          if(typeof jsonObj.results.bindings[i].ResponsibleElement === 'undefined'){
+          	response = ' ';
+          	reorg = ' ';
+          }
+          else {
+          	response = jsonObj.results.bindings[i].ResponsibleElement.value;
+          	reorg = jsonObj.results.bindings[i].resporg.value;
+          }
+          dfsize = dfs.toFixed(1);
+          dfused = dfu.toFixed(1);
+          list.push({"c": [
+      			   {"v": jsonObj.results.bindings[i].FileSystem.value},
+                   {"v": jsonObj.results.bindings[i].MountPoint.value},
+                   {"v": dfsize},
+                   {"v": dfused},
+                   {"v": response},
+                   {"v": speed}]
+                });
+	    }
+        return list;
+    };
+    
+    formatFactory.formatMarinerReport = function(jsonObj){
+    	var list = [];
+		var dfsize;
+		var dfused;
+		var dirsize;
+		var dfs;
+		var dfu;
+		var dir;
+		var response;
+		var speed;
+		var reorg;
+		var filesys;
+		var fileurl;
+
+        // Build up a table of results.
+        for(var i = 0; i<  jsonObj.results.bindings.length; i++) {
+          dir = new Number(jsonObj.results.bindings[i].DirUsed.value)/1024/1024;
+          dirsize = dir.toFixed(1);
+          if(typeof jsonObj.results.bindings[i].Speedtype === 'undefined')
+	      	speed = " ";
+	      else 
+	       	speed = jsonObj.results.bindings[i].Speedtype.value;
+	      if(typeof jsonObj.results.bindings[i].ResponsibleElement === 'undefined'){
+	       	response = ' ';
+	       	reorg = ' ';
+	      }
+	      else {
+	       	response = jsonObj.results.bindings[i].ResponsibleElement.value;
+	       	reorg = jsonObj.results.bindings[i].resporg.value;
+	      }
+	      if(typeof jsonObj.results.bindings[i].DFSize === 'undefined'){
+	       	dfu = 0;
+	       	dfs = 0;
+	      }
+	      else {
+	       	dfs = new Number(jsonObj.results.bindings[i].DFSize.value)/1024/1024;
+            dfu = new Number(jsonObj.results.bindings[i].DFUsed.value)/1024/1024;
+	      }
+	      if(typeof jsonObj.results.bindings[i].FileSystem === 'undefined'){
+	       	filesys = ' ';
+	       	fileurl = ' ';
+	      }
+	      else {
+	       	filesys = jsonObj.results.bindings[i].FileSystem.value;
+	       	fileurl = jsonObj.results.bindings[i].fs.value;
+	      }
+	      dfsize = dfs.toFixed(1);
+          dfused = dfu.toFixed(1);
+          list.push({"c": [
+          			   {"v": filesys},
+                       {"v": jsonObj.results.bindings[i].MountPoint.value},
+                       {"v": dfsize},
+                       {"v": dfused},
+                       {"v": jsonObj.results.bindings[i].dir2.value},
+                       {"v": dirsize},
+                       {"v": response},
+                       {"v": speed}]
+                    });
+        } 
+        return list;
+    };
+    
     return formatFactory;
 });

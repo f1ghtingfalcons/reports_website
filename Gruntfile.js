@@ -10,6 +10,7 @@
 module.exports = function (grunt) {
   require('load-grunt-tasks')(grunt);
   require('time-grunt')(grunt);
+  grunt.loadNpmTasks('grunt-karma');
 
   grunt.initConfig({
     yeoman: {
@@ -71,7 +72,7 @@ module.exports = function (grunt) {
       },
       test: {
         options: {
-          port: 9001,
+          port: 3030,
           base: [
             '.tmp',
             'test',

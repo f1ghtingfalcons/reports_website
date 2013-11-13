@@ -1,17 +1,18 @@
 'use strict';
 
-reportsModule.controller('pi512001Ctrl', ['$scope','dataFactory','formatFactory','ngTableParams','$filter',function ($scope, dataFactory, formatFactory, ngTableParams,$filter){      
+reportsModule.controller('pi512001Ctrl', ['$scope','dataFactory','formatFactory','$filter',function ($scope,dataFactory,formatFactory,$filter){      
 	
 	$scope.title="Web Storage Report";
+	$scope.system="pi512001";
 	
 	var report=[];
 	var cols=[];
 	
-	var urlBase = 'http://lasp-db-dev:3030/VIVO/query';
-    var queryStr = "PREFIX rdfs:  <http://www.w3.org/2000/01/rdf-schema#> PREFIX laspcms: <http://localhost:8080/laspcms#> SELECT ?webspeed ?webresponse ?weborg ?web ?websize ?webdir ?webfs ?webFileSystem ?webDFUsed ?webDFSize ?fs ?Size ?resporg ?ResponsibleElement ?Speedtype ?FileSystem ?lowDir ?MountPoint ?DFSize ?DFUsed ?Used WHERE { ?topDir laspcms:isTopLevelDirectoryOn <http://webdev1.lasp.colorado.edu:57529/vivo/individual/n26815> . ?topDir rdfs:label ?top . ?topDir laspcms:containsDirectory ?lowDir . ?lowDir rdfs:label ?low . ?MountPoint <http://jena.hpl.hp.com/ARQ/property#concat> (?top ?low) . ?topDir laspcms:hasDirectorySize ?Size . ?lowDir laspcms:hasDirectorySize ?Used . ?topDir laspcms:mountsFileSystem ?webfs . ?webfs rdfs:label ?webFileSystem . ?webfs laspcms:hasStorageSize ?webDFSize .?webfs laspcms:hasUsedSize ?webDFUsed  OPTIONAL { ?lowDir laspcms:mountsFileSystem ?fs . ?fs rdfs:label ?FileSystem . ?fs laspcms:hasStorageSize ?DFSize . ?fs laspcms:hasUsedSize ?DFUsed . } OPTIONAL { ?lowDir laspcms:responsibleOrganizationalElement ?resporg . ?resporg rdfs:label ?ResponsibleElement . ?resporg laspcms:billsToSpeedtype ?spdtype . ?spdtype rdfs:label ?Speedtype } OPTIONAL { ?lowDir laspcms:containsDirectory ?web . ?web rdfs:label ?webdir . ?web laspcms:hasDirectorySize ?websize . OPTIONAL { ?web laspcms:responsibleOrganizationalElement ?webresponse . ?webresponse rdfs:label ?weborg . ?webresponse laspcms:billsToSpeedtype ?webspdtyp . ?webspdtyp rdfs:label ?webspeed . }}}";
+	$scope.urlBase = 'http://lasp-db-dev:3030/VIVO/query';
+    $scope.queryStr = "PREFIX rdfs:  <http://www.w3.org/2000/01/rdf-schema#> PREFIX laspcms: <http://localhost:8080/laspcms#> SELECT ?webspeed ?webresponse ?weborg ?web ?websize ?webdir ?webfs ?webFileSystem ?webDFUsed ?webDFSize ?fs ?Size ?resporg ?ResponsibleElement ?Speedtype ?FileSystem ?lowDir ?MountPoint ?DFSize ?DFUsed ?Used WHERE { ?topDir laspcms:isTopLevelDirectoryOn <http://webdev1.lasp.colorado.edu:57529/vivo/individual/n26815> . ?topDir rdfs:label ?top . ?topDir laspcms:containsDirectory ?lowDir . ?lowDir rdfs:label ?low . ?MountPoint <http://jena.hpl.hp.com/ARQ/property#concat> (?top ?low) . ?topDir laspcms:hasDirectorySize ?Size . ?lowDir laspcms:hasDirectorySize ?Used . ?topDir laspcms:mountsFileSystem ?webfs . ?webfs rdfs:label ?webFileSystem . ?webfs laspcms:hasStorageSize ?webDFSize .?webfs laspcms:hasUsedSize ?webDFUsed  OPTIONAL { ?lowDir laspcms:mountsFileSystem ?fs . ?fs rdfs:label ?FileSystem . ?fs laspcms:hasStorageSize ?DFSize . ?fs laspcms:hasUsedSize ?DFUsed . } OPTIONAL { ?lowDir laspcms:responsibleOrganizationalElement ?resporg . ?resporg rdfs:label ?ResponsibleElement . ?resporg laspcms:billsToSpeedtype ?spdtype . ?spdtype rdfs:label ?Speedtype } OPTIONAL { ?lowDir laspcms:containsDirectory ?web . ?web rdfs:label ?webdir . ?web laspcms:hasDirectorySize ?websize . OPTIONAL { ?web laspcms:responsibleOrganizationalElement ?webresponse . ?webresponse rdfs:label ?weborg . ?webresponse laspcms:billsToSpeedtype ?webspdtyp . ?webspdtyp rdfs:label ?webspeed . }}}";
 	
 	function getReport(){
-        dataFactory.getSPARQLQuery(urlBase, queryStr)
+        dataFactory.getSPARQLQuery($scope.urlBase, $scope.queryStr)
             .success(function(data){
             	$scope.error = '';
                 report=formatFactory.formatWebReport(data);
@@ -62,9 +63,10 @@ reportsModule.controller('pi512001Ctrl', ['$scope','dataFactory','formatFactory'
     };
 }]);
 
-reportsModule.controller('marinerCtrl', ['$scope','dataFactory','formatFactory','ngTableParams','$filter',function ($scope, dataFactory, formatFactory, ngTableParams,$filter){      
+reportsModule.controller('marinerCtrl', ['$scope','dataFactory','formatFactory','$filter',function ($scope,dataFactory,formatFactory,$filter){      
 	
 	$scope.title="Mariner Storage Report";
+	$scope.system="mariner";
 	
 	var report=[];
 	var cols=[];
@@ -124,9 +126,10 @@ reportsModule.controller('marinerCtrl', ['$scope','dataFactory','formatFactory',
     };
 }]);
 
-reportsModule.controller('databaseCtrl', ['$scope','dataFactory','formatFactory','ngTableParams','$filter',function ($scope, dataFactory, formatFactory, ngTableParams,$filter){      
+reportsModule.controller('databaseCtrl', ['$scope','dataFactory','formatFactory','$filter',function ($scope,dataFactory,formatFactory,$filter){      
 	
 	$scope.title="Database Storage Report";
+	$scope.system="database servers";
 	
 	var report=[];
 	var cols=[];
@@ -189,9 +192,10 @@ reportsModule.controller('databaseCtrl', ['$scope','dataFactory','formatFactory'
     };
 }]);
 
-reportsModule.controller('dsCtrl', ['$scope','dataFactory','formatFactory','ngTableParams','$filter',function ($scope, dataFactory, formatFactory, ngTableParams,$filter){      
+reportsModule.controller('dsCtrl', ['$scope','dataFactory','formatFactory','$filter',function ($scope,dataFactory,formatFactory,$filter){      
 	
 	$scope.title="DS Storage Report";
+	$scope.system="dsapps";
 	
 	var report=[];
 	var cols=[];

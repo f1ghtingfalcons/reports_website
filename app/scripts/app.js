@@ -2,7 +2,7 @@
   
 /* App Module */
 var reportsModule = angular.module('reportsModule',
-	['ngResource','ngTable','googlechart']); //dependencies go inside the square brackets
+	['ngResource','googlechart']); //dependencies go inside the square brackets
 
 reportsModule.config(function ($routeProvider, $httpProvider) {
 $routeProvider. //this controls navigation within our app

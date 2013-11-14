@@ -1,6 +1,5 @@
 // Generated on 2013-11-06 using generator-angular 0.5.1
 'use strict';
-
 // # Globbing
 // for performance reasons we're only matching one level down:
 // 'test/spec/{,*/}*.js'
@@ -267,7 +266,8 @@ module.exports = function (grunt) {
     karma: {
       unit: {
         configFile: 'karma.conf.js',
-        singleRun: true
+        autoWatch: true,
+        singleRun: false
       }
     },
     cdnify: {

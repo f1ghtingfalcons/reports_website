@@ -35,7 +35,6 @@ reportsModule.factory('formatFactory', function(){
 		var filesuri;
 
         // Build up a table of results.
-        if (jsonObj instanceof Array){
 	        for(var i = 0; i<  jsonObj.results.bindings.length; i++) {
 	          sze = new Number(jsonObj.results.bindings[i].Size.value)/1024/1024;
 	          if(typeof jsonObj.results.bindings[i].FileSystem === 'undefined') {
@@ -92,7 +91,6 @@ reportsModule.factory('formatFactory', function(){
 	                       {"v": speed}]
 	                    });
 	        }
-	    }
         return list;
     };
     
@@ -108,9 +106,8 @@ reportsModule.factory('formatFactory', function(){
 		var reorg;
 		var speed;
 
-		if (jsonObj instanceof Array){
-	        // Build up a table of results.
-	        for(var i = 0; i<  jsonObj.results.bindings.length; i++) {
+        // Build up a table of results.
+        for(var i = 0; i<  jsonObj.results.bindings.length; i++) {
           dfs = new Number(jsonObj.results.bindings[i].DFSizeinGB.value)/1024/1024;
           dfu = new Number(jsonObj.results.bindings[i].DFUsedinGB.value)/1024/1024;
           dbu = new Number(jsonObj.results.bindings[i].DBFileSizeinGB.value)/1024/1024;
@@ -141,7 +138,6 @@ reportsModule.factory('formatFactory', function(){
                    {"v": speed}]
                 });
         }
-        }
         return list;
     };
     
@@ -155,9 +151,8 @@ reportsModule.factory('formatFactory', function(){
 		var speed;
 		var reorg;
 
-		if (jsonObj instanceof Array){
-	        // Build up a table of results.
-	        for(var i = 0; i<  jsonObj.results.bindings.length; i++) {
+        // Build up a table of results.
+        for(var i = 0; i<  jsonObj.results.bindings.length; i++) {
           dfs = new Number(jsonObj.results.bindings[i].DFSize.value)/1024/1024;
           dfu = new Number(jsonObj.results.bindings[i].DFUsed.value)/1024/1024;
           if(typeof jsonObj.results.bindings[i].Speedtype === 'undefined')
@@ -183,7 +178,6 @@ reportsModule.factory('formatFactory', function(){
                    {"v": speed}]
                 });
 	    }
-	    }
         return list;
     };
     
@@ -201,9 +195,8 @@ reportsModule.factory('formatFactory', function(){
 		var filesys;
 		var fileurl;
 
-		if (jsonObj instanceof Array){
-	        // Build up a table of results.
-	        for(var i = 0; i<  jsonObj.results.bindings.length; i++) {
+        // Build up a table of results.
+        for(var i = 0; i<  jsonObj.results.bindings.length; i++) {
           dir = new Number(jsonObj.results.bindings[i].DirUsed.value)/1024/1024;
           dirsize = dir.toFixed(1);
           if(typeof jsonObj.results.bindings[i].Speedtype === 'undefined')
@@ -241,13 +234,12 @@ reportsModule.factory('formatFactory', function(){
                        {"v": jsonObj.results.bindings[i].MountPoint.value},
                        {"v": dfsize},
                        {"v": dfused},
-                       {"v": jsonObj.results.bindings[i].dir2.value},
+                       {"v": jsonObj.results.bindings[i].Directory.value},
                        {"v": dirsize},
                        {"v": response},
                        {"v": speed}]
                     });
         } 
-        }
         return list;
     };
     

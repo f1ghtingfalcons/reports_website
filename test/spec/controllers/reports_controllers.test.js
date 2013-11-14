@@ -1,4 +1,4 @@
-describe('Controller: pi512001', function () {
+describe('Unit Tests: pi512001Ctrl', function () {
 
 	var $httpBackend, $http, $scope, $rootScope, $dataFactory, $formatFactory, $controller;
     var ctrl = null;

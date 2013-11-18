@@ -6,11 +6,12 @@ var reportsModule = angular.module('reportsModule',
 
 reportsModule.config(function ($routeProvider, $httpProvider) {
 $routeProvider. //this controls navigation within our app
-when('/', { controller: 'MainCtrl', templateUrl: 'views/main.html' }).
+when('/', { templateUrl: 'views/main.html' }).
 when('/web_storage_report', { controller: 'pi512001Ctrl', templateUrl: 'views/storage_report.html' }).
 when('/mariner_storage_report', { controller: 'marinerCtrl', templateUrl: 'views/storage_report.html' }).
 when('/database_storage_report', { controller: 'databaseCtrl', templateUrl: 'views/storage_report.html' }).
 when('/ds_storage_report', { controller: 'dsCtrl', templateUrl: 'views/storage_report.html' }).
+when('/data_product_report', { controller: 'dataProductCtrl', templateUrl: 'views/data_products.html' }).
 otherwise({ redirectTo: '/' });
 
 //enable crossdomain requests

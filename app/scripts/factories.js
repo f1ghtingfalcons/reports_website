@@ -243,5 +243,19 @@ reportsModule.factory('formatFactory', function(){
         return list;
     };
     
+    formatFactory.formatDataProductReport = function(jsonObj){	
+        var list = [];
+        // Build up a table of results.
+        for(var i = 0; i<  jsonObj.results.bindings.length; i++) {
+        	list.push({"c": [
+          			   {"v": jsonObj.results.bindings[i].dataset.value},
+                       {"v": jsonObj.results.bindings[i].dataproduct.value},
+                       {"v": jsonObj.results.bindings[i].instrument.value},
+                       {"v": jsonObj.results.bindings[i].spacecraft.value}]
+        	});
+        }
+        return list;
+    };
+    
     return formatFactory;
 });

@@ -257,5 +257,44 @@ reportsModule.factory('formatFactory', function(){
         return list;
     };
     
+    formatFactory.formatOrgChart = function(data){
+    	var list = [];
+    	var groups = [];
+    	var divisions = [];
+    	var found = 0;
+    	//build list of groups and divisions
+    	list = {
+    		name:"Laboratory for Atmospheric and Space Physics",
+    		contents: []
+    	};
+    	for(var i=0; i<data.results.bindings.length;i++){
+    		found=0;
+    		for(var j=0;j<divisions.length;j++){
+    			if(data.results.bindings[i].division.value === divisions[j]){
+    				found=1;
+    				break;
+    			}
+    		}
+    		if(found === 0){
+    			divisions.push(data.results.bindings[i].division.value);
+    		}
+    		for(var j=0;j<groups.length;j++){
+    			if(data.results.bindings[i].group.value === groups[j]){
+    				found=1;
+    				break;
+    			}
+    		}
+    		if(found === 0){
+    			groups.push(data.results.bindings[i].group.value);
+    		}
+    	}
+    	//build json from labs, groups, divisions, and people
+    	for(var i=0;i<divisions.length;i++){
+    		list['contents'].push({
+    			name:divisions[i]
+			});
+    	}
+    	return list;
+    };
     return formatFactory;
 });

@@ -12,6 +12,7 @@ when('/mariner_storage_report', { controller: 'marinerCtrl', templateUrl: 'views
 when('/database_storage_report', { controller: 'databaseCtrl', templateUrl: 'views/storage_report.html' }).
 when('/ds_storage_report', { controller: 'dsCtrl', templateUrl: 'views/storage_report.html' }).
 when('/data_product_report', { controller: 'dataProductCtrl', templateUrl: 'views/data_products.html' }).
+when('/lasp_organization_chart', { controller: 'orgChartCtrl', templateUrl: 'views/org_chart.html' }).
 otherwise({ redirectTo: '/' });
 
 //enable crossdomain requests

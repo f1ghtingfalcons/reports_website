@@ -186,7 +186,6 @@
                                     $scope.chartWrapper.setView($scope.chart.view);
                                 	$scope.chartWrapper.setOptions($scope.chart.options);
                                 }
-				                
                                 	
                                 $timeout(function () {
                                 	$scope.chartWrapper.draw();

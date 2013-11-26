@@ -1,0 +1,22 @@
+<div>
+    <h2 style="text-align: center; border: 2px solid black; border-radius: 5px; font-size: 31px; font-family:verdana;">{{title}}</h2>
+
+    <div id="more">
+
+    </div>
+    <br/>
+	
+    <div id="dropDown" style="text-align: center">
+        Select an Array:
+        <select ng-model="arrayQuery" ng-options="a.name for a in arrays" ng-change="sparqlQueryJson()"></select>
+    </select>
+
+    </div>
+    <hr/>
+</div>
+<div id="chart_container" style="height: 500px;">
+	<div ng-show="chart" google-chart chart="chart" id="chart_div" style="width: 48%; height: 100%; float:left;"></div>
+	<div id="details_div" style="width: 48%; height:100%; float:left;"></div>
+</div>
+<div id="notes" style="clear:both;">
+</div>

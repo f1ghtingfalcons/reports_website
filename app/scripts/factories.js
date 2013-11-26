@@ -296,5 +296,6 @@ reportsModule.factory('formatFactory', function(){
     	}
     	return list;
     };
+    
     return formatFactory;
 });

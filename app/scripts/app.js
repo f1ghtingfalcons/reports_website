@@ -13,6 +13,7 @@ when('/database_storage_report', { controller: 'databaseCtrl', templateUrl: 'vie
 when('/ds_storage_report', { controller: 'dsCtrl', templateUrl: 'views/storage_report.html' }).
 when('/data_product_report', { controller: 'dataProductCtrl', templateUrl: 'views/data_products.html' }).
 when('/lasp_organization_chart', { controller: 'orgChartCtrl', templateUrl: 'views/org_chart.html' }).
+when('/storage_array_allocation', { controller: 'storageArrayCtrl', templateUrl: '/views/storage_array_allocation.html'}).
 otherwise({ redirectTo: '/' });
 
 //enable crossdomain requests
